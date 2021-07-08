@@ -9,6 +9,7 @@ import net.minecraft.util.registry.Registry;
 
 public class Datapacker implements ModInitializer {
 	public static final QuestBookItem QUEST_BOOK_ITEM = new QuestBookItem(new Item.Settings().group(ItemGroup.MISC));
+	public static final Identifier SHARED = new Identifier("datapacker","shared_adv");
 	@Override
 	public void onInitialize() {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.

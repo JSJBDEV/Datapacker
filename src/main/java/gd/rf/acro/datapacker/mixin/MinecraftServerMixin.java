@@ -6,6 +6,7 @@ import net.minecraft.resource.DataPackSettings;
 import net.minecraft.resource.ResourcePackManager;
 import net.minecraft.resource.ResourcePackProfile;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.ServerAdvancementLoader;
 import net.minecraft.server.WorldGenerationProgressListener;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.WorldSavePath;
@@ -43,6 +44,8 @@ public abstract class MinecraftServerMixin {
 
     @Shadow @Final protected SaveProperties saveProperties;
 
+    @Shadow public abstract ServerAdvancementLoader getAdvancementLoader();
+
     @Inject(at = @At("TAIL"), method = "createWorlds")
     private void init(WorldGenerationProgressListener progressListener,CallbackInfo info) {
         try {
@@ -67,6 +70,7 @@ public abstract class MinecraftServerMixin {
                 collection.add(string);
             }
         }
+
 
         return collection;
     }

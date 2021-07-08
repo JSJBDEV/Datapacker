@@ -5,11 +5,11 @@
   "compatibilityLevel": "JAVA_16",
   "mixins": [
     "MinecraftServerMixin",
+    "PlayerAdvancementTrackerMixin",
     "ServerWorldMixin"
   ],
   "client": [
-    "AdvancementScreenMixin",
-    "ExampleMixin"
+    "AdvancementScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
