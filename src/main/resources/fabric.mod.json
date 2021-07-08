@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "datapacker",
+  "version": "${version}",
+
+  "name": "Datapacker",
+  "description": "A utility mod for dealing with advancement based quests",
+  "authors": [
+    "Acrogenous"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+
+  "license": "LGPL-2.1",
+  "icon": "assets/datapacker/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "gd.rf.acro.datapacker.Datapacker"
+    ]
+  },
+  "mixins": [
+    "datapacker.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

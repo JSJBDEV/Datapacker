@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "gd.rf.acro.datapacker.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "MinecraftServerMixin",
+    "ServerWorldMixin"
+  ],
+  "client": [
+    "AdvancementScreenMixin",
+    "ExampleMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
