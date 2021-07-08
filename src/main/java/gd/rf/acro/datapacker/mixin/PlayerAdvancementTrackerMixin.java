@@ -1,5 +1,6 @@
 package gd.rf.acro.datapacker.mixin;
 
+import gd.rf.acro.datapacker.ConfigUtils;
 import gd.rf.acro.datapacker.Datapacker;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
@@ -27,7 +28,7 @@ public class PlayerAdvancementTrackerMixin {
     @Inject(at = @At("TAIL"), method = "grantCriterion")
     public void grantCriterion(Advancement advancement, String criterionName, CallbackInfoReturnable<Boolean> cir)
     {
-        if(this.owner.getScoreboardTeam()!=null)
+        if(this.owner.getScoreboardTeam()!=null && ConfigUtils.config.get("shouldTeamsShare").equals("true"))
         {
             NbtCompound store =this.owner.server.getDataCommandStorage().get(Datapacker.SHARED);
 

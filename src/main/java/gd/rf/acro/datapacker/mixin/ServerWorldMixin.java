@@ -1,5 +1,6 @@
 package gd.rf.acro.datapacker.mixin;
 
+import gd.rf.acro.datapacker.ConfigUtils;
 import gd.rf.acro.datapacker.Datapacker;
 import net.minecraft.data.server.AdventureTabAdvancementGenerator;
 import net.minecraft.entity.player.PlayerEntity;
@@ -23,10 +24,10 @@ public abstract class ServerWorldMixin {
     @Inject(at = @At("TAIL"), method = "onPlayerConnected")
     public void onPlayerConnected(ServerPlayerEntity player, CallbackInfo callbackInfo)
     {
-        if(!player.getScoreboardTags().contains("dp_new"))
+        if(!player.getScoreboardTags().contains(ConfigUtils.config.get("sTag")))
         {
             player.giveItemStack(new ItemStack(Datapacker.QUEST_BOOK_ITEM));
-            player.addScoreboardTag("dp_new");
+            player.addScoreboardTag(ConfigUtils.config.get("sTag"));
 
         }
 

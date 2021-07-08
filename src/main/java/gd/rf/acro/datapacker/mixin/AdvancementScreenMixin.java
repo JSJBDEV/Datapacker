@@ -1,5 +1,6 @@
 package gd.rf.acro.datapacker.mixin;
 
+import gd.rf.acro.datapacker.ConfigUtils;
 import gd.rf.acro.datapacker.Datapacker;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementManager;
@@ -35,7 +36,8 @@ public abstract class AdvancementScreenMixin {
     {
         if(MinecraftClient.getInstance().player.getMainHandStack().getItem()== Datapacker.QUEST_BOOK_ITEM)
         {
-            Optional<AdvancementTab> questTab = tabs.values().stream().filter(s->s.getRoot().getId().equals(new Identifier("quest","root"))).findFirst();
+            Optional<AdvancementTab> questTab = tabs.values().stream().filter(s->
+                    s.getRoot().getId().equals(Identifier.tryParse(ConfigUtils.config.get("rootQuest")))).findFirst();
             questTab.ifPresent(advancementTab -> this.advancementHandler.selectTab(advancementTab.getRoot(), true));
         }
 

@@ -16,6 +16,7 @@ public class Datapacker implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 		Registry.register(Registry.ITEM,new Identifier("datapacker","quest_book"),QUEST_BOOK_ITEM);
+		ConfigUtils.checkConfigs();
 		System.out.println("Hello Fabric world!");
 	}
 }
