@@ -61,12 +61,14 @@ public class ConfigUtils {
         List<String> defaults = new ArrayList<>();
         defaults.add("#should a quests.zip file be copied from config/Datapacker/ to world datapacks?");
         defaults.add("shouldCopy=true");
-        defaults.add("#should vanilla teams have shared advancements? (received when using the quest book)");
+        defaults.add("#should bands/teams have shared advancements? (received when using the quest book)");
         defaults.add("shouldTeamsShare=true");
         defaults.add("#What is the name of the Questline root advancement? (default quest:root)");
         defaults.add("rootQuest=quest:root");
         defaults.add("#Scoreboard tag to use so that only players without it get the quest book on connecting (default dp_new)");
         defaults.add("sTag=dp_new");
+        defaults.add("#Should use the band system rather than teams");
+        defaults.add("shouldUseBands=true");
         return defaults;
     }
 

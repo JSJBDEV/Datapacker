@@ -1,5 +1,6 @@
 package gd.rf.acro.datapacker.mixin;
 
+import gd.rf.acro.datapacker.BandSystem;
 import gd.rf.acro.datapacker.ConfigUtils;
 import gd.rf.acro.datapacker.Datapacker;
 import net.minecraft.advancement.Advancement;
@@ -28,11 +29,25 @@ public class PlayerAdvancementTrackerMixin {
     @Inject(at = @At("TAIL"), method = "grantCriterion")
     public void grantCriterion(Advancement advancement, String criterionName, CallbackInfoReturnable<Boolean> cir)
     {
-        if(this.owner.getScoreboardTeam()!=null && ConfigUtils.config.get("shouldTeamsShare").equals("true"))
+        String bandteam = null;
+        if(ConfigUtils.config.get("shouldUseBands").equals("true"))
+        {
+            bandteam = BandSystem.getBandFor(this.owner);
+        }
+        else
+        {
+            if(this.owner.getScoreboardTeam()!=null)
+            {
+                bandteam=this.owner.getScoreboardTeam().getName();
+            }
+        }
+        
+        
+        if(bandteam!=null && ConfigUtils.config.get("shouldTeamsShare").equals("true"))
         {
             NbtCompound store =this.owner.server.getDataCommandStorage().get(Datapacker.SHARED);
 
-            NbtList adv = (NbtList) store.get(this.owner.getScoreboardTeam().getName());
+            NbtList adv = (NbtList) store.get(bandteam);
             if(adv==null)
             {
                 adv=new NbtList();
@@ -53,7 +68,7 @@ public class PlayerAdvancementTrackerMixin {
             anAdv.putString("Identifier",advancement.getId().toString());
             anAdv.putString("Criteria",criterionName);
             adv.add(anAdv);
-            store.put(this.owner.getScoreboardTeam().getName(),adv);
+            store.put(bandteam,adv);
             this.owner.server.getDataCommandStorage().set(Datapacker.SHARED,store);
         }
     }

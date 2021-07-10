@@ -1,6 +1,7 @@
 package gd.rf.acro.datapacker.items;
 
 import gd.rf.acro.datapacker.Datapacker;
+import gd.rf.acro.datapacker.screens.QuestOptionsScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.advancement.AdvancementsScreen;
 import net.minecraft.entity.player.PlayerEntity;
@@ -22,8 +23,14 @@ public class QuestBookItem extends Item {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+
         if(world.isClient)
         {
+            if(user.isSneaking())
+            {
+                MinecraftClient.getInstance().openScreen(new QuestOptionsScreen());
+                return super.use(world, user, hand);
+            }
             MinecraftClient.getInstance().openScreen(new AdvancementsScreen(MinecraftClient.getInstance().getNetworkHandler().getAdvancementHandler()));
         }
         else
